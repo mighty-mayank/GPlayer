@@ -24,7 +24,7 @@ window.onload = () => {
         document.getElementById('oauth-form').style.display = 'none';
         document.getElementById('video-container').style.display = 'block';
         
-        // Fetch and display video from Google Drive
+        // Fetch and display video files from Google Drive
         fetchVideoList(accessToken);
     }
 };
@@ -37,10 +37,26 @@ function fetchVideoList(accessToken) {
     .then(response => response.json())
     .then(data => {
         if (data.files.length > 0) {
-            loadVideo(data.files[0].id, accessToken); // Load the first video
+            displayFileList(data.files, accessToken); // Show file list
+        } else {
+            console.log('No video files found.');
         }
     })
     .catch(error => console.error('Error fetching videos:', error));
+}
+
+// Display the list of video files
+function displayFileList(files, accessToken) {
+    const fileList = document.getElementById('file-list');
+    fileList.innerHTML = ''; // Clear previous list
+
+    files.forEach(file => {
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+        fileItem.textContent = file.name;
+        fileItem.onclick = () => loadVideo(file.id, accessToken); // Load video on click
+        fileList.appendChild(fileItem);
+    });
 }
 
 // Load video into the Video.js player
@@ -54,6 +70,6 @@ function loadVideo(fileID, accessToken) {
     });
 
     player.ready(() => {
-        player.play(); // Optionally, play automatically
+        player.play(); // Play automatically when loaded
     });
 }
