@@ -7,6 +7,20 @@
   
   <!-- Include Video.js CSS -->
   <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+  <style>
+      #file-list {
+          margin-top: 20px;
+      }
+      .file-item {
+          cursor: pointer;
+          padding: 5px;
+          border: 1px solid #ccc;
+          margin: 5px 0;
+      }
+      .file-item:hover {
+          background-color: #f0f0f0;
+      }
+  </style>
 </head>
 <body>
   <h1>Google Drive Video Player</h1>
@@ -29,6 +43,7 @@
   <div id="video-container" style="display:none;">
     <h2>Video Player</h2>
     <video id="player" class="video-js" controls width="640" height="360"></video>
+    <div id="file-list"></div> <!-- File list container -->
   </div>
 
   <!-- Include Video.js JS -->
