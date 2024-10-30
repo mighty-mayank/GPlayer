@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Drive Video Player</title>
+  
+  <!-- Include Video.js CSS -->
+  <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet" />
+  <style>
+      #file-list {
+          margin-top: 20px;
+      }
+      .file-item {
+          cursor: pointer;
+          padding: 5px;
+          border: 1px solid #ccc;
+          margin: 5px 0;
+      }
+      .file-item:hover {
+          background-color: #f0f0f0;
+      }
+  </style>
+</head>
+<body>
+  <h1>Google Drive Video Player</h1>
+  
+  <!-- User Input Form for OAuth Credentials -->
+  <form id="oauth-form">
+    <label for="client-id">Client ID:</label>
+    <input type="text" id="client-id" required><br><br>
+    
+    <label for="client-secret">Client Secret:</label>
+    <input type="text" id="client-secret" required><br><br>
+    
+    <label for="redirect-uri">Redirect URI:</label>
+    <input type="text" id="redirect-uri" required><br><br>
+    
+    <button type="submit">Authenticate with Google</button>
+  </form>
+  
+  <!-- Video Player -->
+  <div id="video-container" style="display:none;">
+    <h2>Video Player</h2>
+    <video id="player" class="video-js" controls width="640" height="360"></video>
+    <div id="file-list"></div> <!-- File list container -->
+  </div>
+
+  <!-- Include Video.js JS -->
+  <script src="https://vjs.zencdn.net/7.20.3/video.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
